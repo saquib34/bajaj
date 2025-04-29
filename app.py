@@ -12,8 +12,15 @@ app = FastAPI(title="Lab Test OCR API",
               description="Extract lab test information from medical report images using PaddleOCR")
 
 # Initialize PaddleOCR
-ocr = PaddleOCR(use_angle_cls=True, lang='en')
-
+ocr = PaddleOCR(
+        use_angle_cls=False,  # Disable angle detection to save memory
+        lang='en',
+        use_gpu=False,  
+        enable_mkldnn=True, 
+        det_db_thresh=0.3, 
+        det_db_box_thresh=0.5, 
+        rec_batch_num=1  
+)
 # Helper functions from your original code
 def clean_text(text):
     return text.strip().replace(":", "").replace(")", "").replace("(", "").strip()
