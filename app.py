@@ -96,7 +96,7 @@ class OCRResponse(BaseModel):
     image_name: str
     total_tests_found: int
 
-@app.post("/extract-lab-tests/", response_model=OCRResponse)
+@app.post("/get-lab-tests", response_model=OCRResponse)
 async def extract_tests_from_image(file: UploadFile = File(...)):
     """
     Upload a medical report image and extract structured lab test information.
